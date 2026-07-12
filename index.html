@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio PV‑387 · Milton Centeno Huamán | UNSCH Filial Pichari</title>
+    <meta name="description" content="Portafolio académico del curso Sistema Agrosilvopastoril (PV‑387). Exposiciones, prácticas con RStudio, Mendeley, AutoCAD y proyección social.">
+    <!-- Fuentes y Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --verde-oscuro: #0b2a1a;
+            --verde-medio: #1a4a2e;
+            --verde-claro: #2d6b3f;
+            --verde-suave: #e8f0e5;
+            --fondo: #f4f7f1;
+            --dorado: #c4a34b;
+            --dorado-claro: #d9c06e;
+            --dorado-oscuro: #a07d2e;
+            --blanco: #ffffff;
+            --texto: #1a221c;
+            --texto-secundario: #4a5c4e;
+            --texto-claro: #6b7d6e;
+            --borde: #e0e8dd;
+            --sombra-sm: 0 1px 3px rgba(11,42,26,0.06);
+            --sombra-md: 0 6px 20px rgba(11,42,26,0.08);
+            --sombra-lg: 0 14px 40px rgba(11,42,26,0.12);
+            --radio: 18px;
+            --radio-xl: 26px;
+            --transicion: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--fondo);
+            color: var(--texto);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            background-image:
+                radial-gradient(ellipse at 20% 0%, rgba(196,163,75,0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 100%, rgba(26,74,46,0.06) 0%, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        .contenedor {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 20px 24px 40px;
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            background: linear-gradient(145deg, #0b2a1a 0%, #153a25 30%, #1e5535 100%);
+            border-radius: var(--radio-xl);
+            padding: 44px 40px 40px;
+            margin-bottom: 28px;
+            color: #fff;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            box-shadow: var(--sombra-lg);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -70px; right: -40px;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(196,163,75,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero-contenido { position: relative; z-index: 2; flex: 1; min-width: 280px; }
+        .hero-contenido .marca {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+            padding: 7px 18px; border-radius: 40px; font-size: 0.82rem;
+            font-weight: 600; letter-spacing: 0.4px; margin-bottom: 16px;
+            backdrop-filter: blur(4px);
+        }
+        .hero-contenido .marca i { color: var(--dorado); }
+        .hero-contenido h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.7rem; font-weight: 700; line-height: 1.2;
+            letter-spacing: -0.4px; margin-bottom: 8px;
+        }
+        .hero-contenido h1 span { color: var(--dorado-claro); }
+        .hero-contenido .subtitulo {
+            font-size: 1.05rem; opacity: 0.9; margin-bottom: 4px;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .hero-contenido .subtitulo i { color: var(--dorado); width: 18px; text-align: center; }
+        .hero-estadisticas {
+            position: relative; z-index: 2; display: flex; gap: 16px; flex-wrap: wrap;
+        }
+        .stat {
+            background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 20px; padding: 18px 20px; text-align: center;
+            backdrop-filter: blur(6px); min-width: 80px; transition: var(--transicion);
+        }
+        .stat:hover { background: rgba(255,255,255,0.15); transform: translateY(-4px); }
+        .stat .num {
+            font-family: 'Playfair Display', serif; font-size: 2.6rem;
+            font-weight: 700; color: var(--dorado-claro); line-height: 1;
+        }
+        .stat .label {
+            font-size: 0.7rem; font-weight: 600; letter-spacing: 0.5px;
+            opacity: 0.85; margin-top: 4px; text-transform: uppercase;
+        }
+
+        /* ========== BARRA DE FILTROS ========== */
+        .barra-filtros {
+            display: flex; align-items: center; flex-wrap: wrap; gap: 6px;
+            background: var(--blanco); padding: 8px 12px; border-radius: 50px;
+            box-shadow: var(--sombra-md); margin-bottom: 14px; justify-content: center;
+            border: 1px solid var(--borde); position: sticky; top: 16px; z-index: 50;
+        }
+        .btn-filtro {
+            background: transparent; border: 2px solid transparent;
+            padding: 8px 18px; border-radius: 40px; font-weight: 600;
+            font-size: 0.82rem; color: var(--texto-secundario); cursor: pointer;
+            transition: var(--transicion); font-family: 'Inter', sans-serif;
+            letter-spacing: 0.2px; white-space: nowrap;
+        }
+        .btn-filtro:hover { background: var(--verde-suave); color: var(--verde-oscuro); }
+        .btn-filtro.activo {
+            background: var(--verde-oscuro); color: #fff;
+            border-color: var(--verde-oscuro); box-shadow: 0 4px 12px rgba(11,42,26,0.3);
+        }
+        .contador {
+            text-align: center; font-size: 0.84rem; color: var(--texto-claro);
+            font-weight: 500; margin-bottom: 12px;
+        }
+        .contador span { font-weight: 700; color: var(--verde-medio); }
+
+        /* ========== GRID ========== */
+        .grid-exposiciones { display: flex; flex-direction: column; gap: 22px; }
+
+        /* ========== TARJETA HORIZONTAL ========== */
+        .tarjeta {
+            background: var(--blanco); border-radius: var(--radio);
+            overflow: hidden; box-shadow: var(--sombra-sm);
+            border: 1px solid var(--borde); display: flex; flex-direction: row;
+            align-items: stretch; transition: var(--transicion);
+        }
+        .tarjeta:hover { box-shadow: var(--sombra-lg); transform: translateY(-3px); }
+        .tarjeta .lateral {
+            flex: 0 0 100px; background: linear-gradient(170deg, #f8faf6, #eef3ec);
+            display: flex; flex-direction: column; align-items: center;
+            justify-content: center; gap: 8px; border-right: 1px solid var(--borde);
+            padding: 16px 8px; position: relative;
+        }
+        .tarjeta .lateral .icono { font-size: 2.6rem; color: #b83a2c; opacity: 0.7; }
+        .tarjeta:hover .lateral .icono { opacity: 0.95; transform: scale(1.05); }
+        .tarjeta .lateral .unidad-badge {
+            font-size: 0.65rem; font-weight: 700; color: var(--verde-medio);
+            background: rgba(26,74,46,0.08); padding: 4px 10px; border-radius: 20px;
+            text-align: center; line-height: 1.2;
+        }
+        .tarjeta .cuerpo { flex: 1; padding: 18px 22px 14px; display: flex; flex-direction: column; }
+        .tarjeta .cuerpo .encabezado {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            gap: 10px; margin-bottom: 5px; flex-wrap: wrap;
+        }
+        .tarjeta .cuerpo .encabezado h3 {
+            font-size: 1.12rem; font-weight: 700; color: var(--verde-oscuro);
+            line-height: 1.3; flex: 1; letter-spacing: -0.2px;
+        }
+        .badge-unidad {
+            background: var(--verde-suave); color: var(--verde-medio);
+            font-size: 0.68rem; font-weight: 700; padding: 4px 12px;
+            border-radius: 30px; white-space: nowrap; flex-shrink: 0;
+        }
+        .tarjeta .cuerpo .desc {
+            font-size: 0.88rem; color: var(--texto-secundario); line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        /* Mapa conceptual */
+        .mapa {
+            background: #fafcf9; border-radius: 12px; border: 1px solid #e4ece1;
+            overflow: hidden; margin: 4px 0 8px;
+        }
+        .mapa .mapa-bar {
+            background: var(--verde-oscuro); padding: 5px 14px;
+            display: flex; align-items: center; gap: 8px;
+            border-bottom: 2px solid var(--dorado);
+        }
+        .mapa .mapa-bar i { color: var(--dorado-claro); font-size: 0.8rem; }
+        .mapa .mapa-bar span {
+            color: #fff; font-weight: 700; font-size: 0.7rem;
+            letter-spacing: 0.5px; text-transform: uppercase;
+        }
+        .mapa .grid-mapa {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 5px; padding: 8px 10px;
+        }
+        .mapa .nodo {
+            background: #fff; border-radius: 8px; padding: 8px 10px;
+            border-left: 3px solid var(--dorado); box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+        .mapa .nodo h4 {
+            font-size: 0.7rem; text-transform: uppercase; font-weight: 700;
+            color: var(--verde-oscuro); letter-spacing: 0.3px; margin-bottom: 2px;
+            display: flex; align-items: center; gap: 5px;
+        }
+        .mapa .nodo h4 i { color: var(--dorado-oscuro); font-size: 0.7rem; }
+        .mapa .nodo ul { list-style: none; padding: 0; margin: 0; }
+        .mapa .nodo ul li {
+            font-size: 0.72rem; color: #3a5240; padding: 1px 0 1px 13px;
+            position: relative; line-height: 1.4;
+        }
+        .mapa .nodo ul li::before {
+            content: "▸"; color: var(--dorado); font-weight: bold;
+            position: absolute; left: 0; font-size: 0.6rem; top: 2px;
+        }
+        .mapa .clave {
+            grid-column: 1 / -1; background: #f5f9f3;
+            border-radius: 6px; padding: 6px 12px; display: flex; align-items: center;
+            gap: 8px; border: 1px dashed #b8cfae;
+        }
+        .mapa .clave i { color: var(--dorado-oscuro); }
+        .mapa .clave span {
+            font-size: 0.74rem; font-weight: 600; color: var(--verde-oscuro); line-height: 1.3;
+        }
+
+        /* Botones */
+        .acciones {
+            display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto;
+            border-top: 1px solid #f0f5ee; padding-top: 10px;
+        }
+        .btn {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 8px 17px; border-radius: 40px; font-weight: 600;
+            font-size: 0.78rem; cursor: pointer; transition: var(--transicion);
+            text-decoration: none; font-family: 'Inter', sans-serif; border: none;
+        }
+        .btn-primario { background: var(--verde-oscuro); color: #fff; }
+        .btn-primario:hover { background: #163d26; transform: scale(1.03); }
+        .btn-secundario {
+            background: #edf4ea; color: var(--verde-oscuro);
+            border: 1px solid #d4e0cf;
+        }
+        .btn-secundario:hover { background: #dfead9; transform: scale(1.02); }
+
+        /* ========== SECCIONES ========== */
+        .seccion {
+            background: var(--blanco); border-radius: var(--radio-xl);
+            padding: 30px 32px; margin: 26px 0; box-shadow: var(--sombra-sm);
+            border: 1px solid var(--borde);
+        }
+        .seccion h2 {
+            font-family: 'Playfair Display', serif; font-size: 1.5rem;
+            font-weight: 700; color: var(--verde-oscuro); margin-bottom: 20px;
+            padding-bottom: 14px; border-bottom: 2px solid #eef4eb;
+            display: flex; align-items: center; gap: 12px;
+        }
+        .seccion h2 .ico {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 40px; height: 40px; background: var(--verde-suave);
+            border-radius: 50%; color: var(--verde-medio); font-size: 1rem;
+        }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .tarjeta-soft {
+            background: #fafcf8; border-radius: 16px; padding: 20px;
+            border: 1px solid #e8efe4; transition: var(--transicion);
+        }
+        .tarjeta-soft:hover { border-color: #c8d6c2; box-shadow: var(--sombra-md); }
+        .tarjeta-soft .sw-icon { font-size: 2.2rem; color: var(--verde-medio); margin-bottom: 6px; }
+        .tarjeta-soft h3 { font-size: 0.95rem; font-weight: 700; color: var(--verde-oscuro); }
+        .tarjeta-soft p { font-size: 0.84rem; color: var(--texto-secundario); line-height: 1.5; }
+        .badge-nivel {
+            display: inline-block; background: var(--verde-suave); color: var(--verde-medio);
+            font-size: 0.68rem; font-weight: 700; padding: 3px 12px; border-radius: 20px;
+            margin-top: 8px;
+        }
+
+        .proyeccion-flex {
+            display: flex; flex-wrap: wrap; gap: 28px; align-items: stretch;
+        }
+        .proyeccion-texto { flex: 1; min-width: 260px; }
+        .proyeccion-texto .fecha {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: #fdf6e8; color: #8b6914; font-weight: 700;
+            font-size: 0.78rem; padding: 5px 14px; border-radius: 20px;
+            margin-bottom: 10px; border: 1px solid #f0e0b8;
+        }
+        .proyeccion-texto p { font-size: 0.9rem; color: var(--texto-secundario); line-height: 1.7; }
+        .ods-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: #e8f5e9; color: #2e7d32; font-weight: 600;
+            font-size: 0.76rem; padding: 6px 16px; border-radius: 20px;
+            border: 1px solid #c8e6c9; margin-top: 8px;
+        }
+        .proyeccion-img { flex: 0 0 320px; min-width: 240px; text-align: center; }
+        .proyeccion-img img {
+            width: 100%; max-height: 300px; object-fit: cover;
+            border-radius: 14px; border: 2px solid #e8efe4; box-shadow: var(--sombra-md);
+        }
+
+        .reflexion-caja {
+            background: linear-gradient(135deg, #fafcf8, #f5f9f2);
+            border-radius: 16px; padding: 24px 28px; border: 1px solid #e4ece1;
+            border-left: 5px solid var(--dorado);
+        }
+        .reflexion-caja p { font-size: 0.93rem; color: var(--texto-secundario); line-height: 1.8; }
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+        .tag {
+            background: var(--verde-oscuro); color: #fff; padding: 5px 16px;
+            border-radius: 30px; font-weight: 600; font-size: 0.73rem;
+            display: inline-flex; align-items: center; gap: 5px;
+        }
+
+        .contacto-footer {
+            text-align: center; background: var(--blanco); border-radius: var(--radio-xl);
+            padding: 24px; margin: 26px 0; border: 1px solid var(--borde);
+        }
+        .contacto-footer h3 {
+            font-family: 'Playfair Display', serif; font-size: 1.3rem;
+            color: var(--verde-oscuro); margin-bottom: 8px;
+        }
+        .contacto-footer p { color: var(--texto-secundario); font-size: 0.9rem; margin: 4px 0; }
+
+        /* MODAL */
+        .modal-overlay {
+            display: none; position: fixed; inset: 0;
+            background: rgba(8, 22, 13, 0.88); backdrop-filter: blur(8px);
+            z-index: 999; justify-content: center; align-items: center; padding: 20px;
+        }
+        .modal-overlay.abierto { display: flex; }
+        .modal-contenido {
+            background: #fff; border-radius: 22px; width: 95%; max-width: 1100px;
+            max-height: 94vh; display: flex; flex-direction: column; overflow: hidden;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.55);
+        }
+        .modal-header {
+            padding: 14px 22px; background: #fafcf9; border-bottom: 1px solid #e8efe5;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .modal-header h4 { font-size: 1rem; color: var(--verde-oscuro); display: flex; gap: 8px; }
+        .modal-header button {
+            background: none; border: none; font-size: 2rem; cursor: pointer;
+            color: var(--texto-claro); transition: 0.2s; padding: 0 10px;
+        }
+        .modal-header button:hover { color: #c0392b; transform: rotate(90deg); }
+        .modal-body { padding: 10px; background: #f5f7f3; flex: 1; overflow: auto; }
+        .modal-body iframe { width: 100%; height: 78vh; border: none; border-radius: 12px; background: #fff; }
+
+        /* REVEAL */
+        .reveal {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 800px) {
+            .hero { padding: 28px 20px; }
+            .hero-contenido h1 { font-size: 2rem; }
+            .tarjeta { flex-direction: column; }
+            .tarjeta .lateral {
+                flex-direction: row; border-right: none; border-bottom: 1px solid var(--borde);
+                padding: 12px 16px; gap: 14px; justify-content: flex-start;
+            }
+            .mapa .grid-mapa { grid-template-columns: 1fr; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .proyeccion-flex { flex-direction: column; }
+            .barra-filtros { border-radius: 30px; padding: 6px 10px; gap: 4px; }
+            .btn-filtro { padding: 6px 14px; font-size: 0.74rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+
+        <!-- HEADER -->
+        <header class="hero reveal">
+            <div class="hero-contenido">
+                <div class="marca"><i class="fas fa-seedling"></i> Portafolio PV‑387</div>
+                <h1>Milton <span>Centeno Huamán</span></h1>
+                <p class="subtitulo"><i class="fas fa-graduation-cap"></i> 5.º ciclo · Ingeniería Agroforestal</p>
+                <p class="subtitulo"><i class="fas fa-university"></i> UNSCH – Filial Pichari</p>
+                <div style="margin-top:14px; font-size:0.9rem; opacity:0.8;">
+                    <i class="fas fa-envelope"></i> milton.centeno.28@unsch.edu.pe &nbsp;|&nbsp;
+                    <i class="fas fa-calendar-alt"></i> 2026‑I
+                </div>
+            </div>
+            <div class="hero-estadisticas">
+                <div class="stat"><div class="num">7</div><div class="label">Exposiciones</div></div>
+                <div class="stat"><div class="num">4</div><div class="label">Unidades</div></div>
+                <div class="stat"><div class="num">4</div><div class="label">Software</div></div>
+                <div class="stat"><div class="num">1</div><div class="label">Proy. Social</div></div>
+            </div>
+        </header>
+
+        <!-- FILTROS -->
+        <div class="barra-filtros reveal" id="barraFiltros">
+            <span style="font-size:0.78rem; font-weight:700; color:#6b7d6e; margin-right:6px;"><i class="fas fa-filter"></i></span>
+            <button class="btn-filtro activo" data-filtro="todas">📚 Todas</button>
+            <button class="btn-filtro" data-filtro="unidad1">🌱 Unidad I</button>
+            <button class="btn-filtro" data-filtro="unidad2">🌿 Unidad II</button>
+            <button class="btn-filtro" data-filtro="unidad3">🌳 Unidad III</button>
+            <button class="btn-filtro" data-filtro="unidad4">📊 Unidad IV</button>
+        </div>
+        <div class="contador reveal" id="contador">Mostrando <span>0</span> trabajos</div>
+
+        <!-- GRID DINÁMICO -->
+        <main class="grid-exposiciones" id="gridExposiciones"></main>
+
+        <!-- PRÁCTICAS SOFTWARE -->
+        <section class="seccion reveal">
+            <h2><span class="ico"><i class="fas fa-laptop-code"></i></span> Prácticas con Software</h2>
+            <div class="grid-2">
+                <div class="tarjeta-soft"><div class="sw-icon"><i class="fab fa-r-project"></i></div><h3>RStudio</h3><p>DBCA para gramíneas forrajeras. ANOVA y visualización con ggplot2.</p><span class="badge-nivel">🧪 Estadística</span></div>
+                <div class="tarjeta-soft"><div class="sw-icon"><i class="fas fa-book"></i></div><h3>Mendeley</h3><p>Referencias APA 7.ª y bibliografías automáticas.</p><span class="badge-nivel">📚 Gestor</span></div>
+                <div class="tarjeta-soft"><div class="sw-icon"><i class="fas fa-pencil-ruler"></i></div><h3>AutoCAD</h3><p>Planos de parcelas silvopastoriles y cercas vivas.</p><span class="badge-nivel">📐 Diseño</span></div>
+                <div class="tarjeta-soft"><div class="sw-icon"><i class="fas fa-users"></i></div><h3>Colaborativo</h3><p>Exposiciones grupales, debates y plataformas virtuales.</p><span class="badge-nivel">🤝 Blandas</span></div>
+            </div>
+        </section>
+
+        <!-- PROYECCIÓN SOCIAL -->
+        <section class="seccion reveal">
+            <h2><span class="ico"><i class="fas fa-hand-holding-heart"></i></span> Proyección Social</h2>
+            <div class="proyeccion-flex">
+                <div class="proyeccion-texto">
+                    <div class="fecha"><i class="fas fa-map-marker-alt"></i> Comunidad de Teresa · 12/07/2026</div>
+                    <p>Charlas y talleres con agricultores sobre sistemas agrosilvopastoriles, manejo de pasturas y conservación de suelos en el VRAEM.</p>
+                    <div class="ods-badge"><i class="fas fa-globe-americas"></i> ODS: 2, 13 y 15</div>
+                </div>
+                <div class="proyeccion-img">
+                    <img src="https://drive.google.com/thumbnail?id=1uequA76x3JDQK1_0O7OWj8GofBsNXSgK&sz=w800" alt="Proyección social Teresa" onerror="this.style.opacity='0.5'">
+                    <p style="font-size:0.7rem; color:#6b7d6e;">📷 Actividad en Teresa – 12/07/2026</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- REFLEXIÓN -->
+        <section class="seccion reveal">
+            <h2><span class="ico"><i class="fas fa-lightbulb"></i></span> Reflexión y Aprendizajes</h2>
+            <div class="reflexion-caja">
+                <p>El curso <strong>PV‑387</strong> me enseñó a integrar árboles, pastos y animales para lograr sistemas sostenibles. Las exposiciones científicas y la proyección social en Teresa consolidaron mi formación agroforestal.</p>
+                <div class="tags">
+                    <span class="tag"><i class="fas fa-tree"></i> Silvopastoril</span>
+                    <span class="tag"><i class="fas fa-chart-line"></i> Datos</span>
+                    <span class="tag"><i class="fas fa-users"></i> Equipo</span>
+                    <span class="tag"><i class="fas fa-hand-holding-heart"></i> Social</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACTO -->
+        <div class="contacto-footer reveal">
+            <h3><i class="fas fa-envelope" style="color:var(--dorado); margin-right:8px;"></i>Contacto</h3>
+            <p><strong>Milton Centeno Huamán</strong></p>
+            <p>milton.centeno.28@unsch.edu.pe</p>
+            <p>UNSCH Filial Pichari · 5.º ciclo · Ing. Agroforestal</p>
+        </div>
+
+    </div>
+
+    <!-- MODAL PDF -->
+    <div class="modal-overlay" id="modalVisor">
+        <div class="modal-contenido">
+            <div class="modal-header">
+                <h4 id="modalTitulo"><i class="fas fa-file-pdf"></i> Visualizando</h4>
+                <button id="cerrarModal">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const exposiciones = [
+                {
+                    id: 1,
+                    titulo: 'Motores de la Dehesa y el Norte: Vacuno y Cerdo Ibérico',
+                    desc: 'Sistemas tradicionales de dehesa, razas autóctonas y su integración con el medio forestal mediterráneo.',
+                    unidad: 'unidad1',
+                    fileId: '1boBm271x1erHOVzYN1Hxu4n1v-nwjMiE',
+                    mapa: {
+                        nodos: [
+                            { icono: 'fa-archway', titulo: 'Sistemas tradicionales', items: ['Dehesa integrada','Pastoreo extensivo','Integración forestal‑ganadera'] },
+                            { icono: 'fa-cow', titulo: 'Razas autóctonas', items: ['Vacuno Ternera Gallega','Cerdo Jamón DOP','Ovejas y cabras'] },
+                            { icono: 'fa-certificate', titulo: 'Certificaciones', items: ['Sellos DOP','Ganadería ecológica','Conservación'] },
+                            { icono: 'fa-globe-americas', titulo: 'Impacto', items: ['Valor agregado','Trazabilidad','Modelo sostenible'] }
+                        ],
+                        clave: 'Modelo que preserva paisaje y genera productos de alta calidad diferenciada.'
+                    }
+                },
+                {
+                    id: 2,
+                    titulo: 'Rusticidad Extrema: Ovejas y Cabras en Tierras Ibéricas',
+                    desc: 'Adaptación de pequeños rumiantes a condiciones adversas y su rol ecológico.',
+                    unidad: 'unidad1',
+                    fileId: '1RQkhhxDYCGqxi-0STN8TEhKgWoTpVyB-',
+                    mapa: {
+                        nodos: [
+                            { icono: 'fa-paw', titulo: 'Adaptación', items: ['Resistencia climática','Bajos insumos','Pastoreo montaña'] },
+                            { icono: 'fa-tree', titulo: 'Rol ecológico', items: ['Mantiene paisaje','Previene incendios','Control matorral'] },
+                            { icono: 'fa-cheese', titulo: 'Productos', items: ['Quesos DOP','Carnes calidad','Aprovechamiento integral'] },
+                            { icono: 'fa-coins', titulo: 'Viabilidad', items: ['Baja inversión','Alto valor cultural','Sostenibilidad rural'] }
+                        ],
+                        clave: 'Sistemas de bajo costo con alto valor cultural y ecológico.'
+                    }
+                },
+                {
+                    id: 3,
+                    titulo: 'Calidad Certificada y Respeto Ambiental (DOP)',
+                    desc: 'Sellos de calidad, integración ambiental y ganadería ecológica en sistemas extensivos.',
+                    unidad: 'unidad1',
+                    fileId: '18xVeWq6qzG9VFP4hrm5eqIdKugsnPXqi',
+                    mapa: {
+                        nodos: [
+                            { icono: 'fa-medal', titulo: 'Sellos', items: ['Carne de Ávila','Ternera Gallega','Queso Manchego','Jamón Huelva'] },
+                            { icono: 'fa-leaf', titulo: 'Ecológico', items: ['Prácticas ambientales','Conservación biodiversidad'] },
+                            { icono: 'fa-chart-simple', titulo: 'Beneficios', items: ['Valor agregado','Trazabilidad'] },
+                            { icono: 'fa-handshake', titulo: 'Sostenibilidad', items: ['Tradición y modernidad','Desarrollo rural'] }
+                        ],
+                        clave: 'Los sellos DOP vinculan calidad, tradición y sostenibilidad.'
+                    }
+                },
+                {
+                    id: 4,
+                    titulo: 'Sistemas Silvopastoriles en los Andes Peruanos',
+                    desc: 'Composición florística, valor nutricional por época y reservas de carbono en ciprés y pona.',
+                    unidad: 'unidad2',
+                    fileId: '1Wqk2sTXFfECTflI5SuLFiUfQILsYnRq-',
+                    mapa: {
+                        nodos: [
+                            { icono: 'fa-seedling', titulo: 'Composición', items: ['SSP Ciprés: 49% gramíneas','SSP Pona: 49% malezas'] },
+                            { icono: 'fa-cloud-rain', titulo: 'Época lluviosa', items: ['Mayor diversidad','Crecimiento vigoroso'] },
+                            { icono: 'fa-sun', titulo: 'Época seca', items: ['Reducción biomasa','Persistencia especies'] },
+                            { icono: 'fa-mountain', titulo: 'Carbono', items: ['Almacenamiento biomasa','Secuestro suelo'] }
+                        ],
+                        clave: 'Actúan como sumideros de carbono y mejoran la composición florística.'
+                    }
+                },
+                {
+                    id: 5,
+                    titulo: 'Mitigación del Cambio Climático: Reservas de Carbono en SSP',
+                    desc: 'Rol ambiental de la silvopastura, servicios ecosistémicos y bonos de carbono.',
+                    unidad: 'unidad2',
+                    fileId: '1zqHKHLkS8hAyJmbnPiqrznhtAl1hD8LF',
+                    mapa: {
+                        nodos: [
+                            { icono: 'fa-cloud-sun', titulo: 'Almacenamiento', items: ['Mayor en SSP','Biomasa arbórea'] },
+                            { icono: 'fa-hand-holding-usd', titulo: 'Servicios', items: ['Bonos de carbono','Ingresos extra'] },
+                            { icono: 'fa-recycle', titulo: 'Impacto', items: ['Reducción GEI','Resiliencia'] },
+                            { icono: 'fa-chart-line', titulo: 'Oportunidades', items: ['Mercados carbono','Fincas sostenibles'] }
+                        ],
+                        clave: 'Herramienta clave para mitigar el cambio climático y generar valor.'
+                    }
+                },
+                {
+                    id: 6,
+                    titulo: 'Gramíneas y Leguminosas: Diseño de la Pradera Perfecta',
+                    desc: 'Asociaciones directas, siembra en franjas y los tres pilares: fijación de N, calidad y biomasa.',
+                    unidad: 'unidad3',
+                    fileId: '1GHfQranUyAE9BjVJj4cCQ3bR9n94Tm_K',
+                    mapa: {
+                        nodos: [
+                            { icono: 'fa-seedling', titulo: 'Asociaciones', items: ['Proporción 30-40%','Arreglos 1:1, 2:1'] },
+                            { icono: 'fa-border-all', titulo: 'Franjas', items: ['Rehabilita pasturas','5x5m o 7x3m'] },
+                            { icono: 'fa-flask', titulo: 'Fijación N', items: ['Leucaena, Guaje','Reduce fertilizantes 80%'] },
+                            { icono: 'fa-weight-scale', titulo: 'Calidad/Biomasa', items: ['+109 g/día','Mayor carga animal'] }
+                        ],
+                        clave: 'Mejora nutrición, fertilidad y productividad del sistema.'
+                    }
+                },
+                {
+                    id: 7,
+                    titulo: 'Sistemas Silvopastoriles en la Amazonía Ecuatoriana',
+                    desc: 'Árboles asociados al ganado, equilibrio entre sombra y productividad forrajera.',
+                    unidad: 'unidad3',
+                    fileId: '1PnYrH10vFcz_vxNtIcHGZxkFaa-gP7HC',
+                    mapa: {
+                        nodos: [
+                            { icono: 'fa-tree', titulo: 'Árboles', items: ['Maderables y frutales','Adaptados al trópico'] },
+                            { icono: 'fa-sun', titulo: 'Sombra', items: ['Moderada mejora calidad','Densidad óptima'] },
+                            { icono: 'fa-recycle', titulo: 'Beneficios', items: ['Sostenibilidad','Diversificación'] },
+                            { icono: 'fa-chart-simple', titulo: 'Productividad', items: ['Mejor forraje','Bienestar animal'] }
+                        ],
+                        clave: 'El árbol amazónico mejora el sistema sin sacrificar productividad.'
+                    }
+                }
+            ];
+
+            const nombresUnidad = {
+                'unidad1': 'Unidad I: Conceptos',
+                'unidad2': 'Unidad II: Interacciones',
+                'unidad3': 'Unidad III: Tecnologías',
+                'unidad4': 'Unidad IV: Costos'
+            };
+
+            let filtroActual = 'todas';
+
+            function construirMapaHTML(mapa) {
+                if (!mapa || !mapa.nodos) return '';
+                const nodosHTML = mapa.nodos.map(n => `
+                    <div class="nodo">
+                        <h4><i class="fas ${n.icono}"></i> ${n.titulo}</h4>
+                        <ul>${n.items.map(i => `<li>${i}</li>`).join('')}</ul>
+                    </div>
+                `).join('');
+                return `
+                    <div class="mapa">
+                        <div class="mapa-bar"><i class="fas fa-sitemap"></i><span>Mapa conceptual</span></div>
+                        <div class="grid-mapa">
+                            ${nodosHTML}
+                            <div class="clave"><i class="fas fa-key"></i><span>${mapa.clave}</span></div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function renderizar(filtro) {
+                const grid = document.getElementById('gridExposiciones');
+                const contador = document.getElementById('contador');
+                const datos = filtro === 'todas' ? exposiciones : exposiciones.filter(e => e.unidad === filtro);
+                contador.innerHTML = `Mostrando <span>${datos.length}</span> trabajo${datos.length !== 1 ? 's' : ''}`;
+
+                if (datos.length === 0) {
+                    grid.innerHTML = `<div style="text-align:center;padding:40px;background:#fff;border-radius:18px;color:#6b7d6e;"><i class="fas fa-folder-open" style="font-size:3rem;opacity:0.3;display:block;margin-bottom:10px;"></i><p>No hay archivos en esta unidad.</p></div>`;
+                    return;
+                }
+
+                grid.innerHTML = datos.map(exp => `
+                    <article class="tarjeta reveal">
+                        <div class="lateral">
+                            <div class="icono"><i class="fas fa-file-pdf"></i></div>
+                            <span class="unidad-badge">${nombresUnidad[exp.unidad] || exp.unidad}</span>
+                        </div>
+                        <div class="cuerpo">
+                            <div class="encabezado">
+                                <h3>${exp.titulo}</h3>
+                                <span class="badge-unidad">${nombresUnidad[exp.unidad] || exp.unidad}</span>
+                            </div>
+                            <p class="desc">${exp.desc}</p>
+                            ${construirMapaHTML(exp.mapa)}
+                            <div class="acciones">
+                                <button class="btn btn-primario" onclick="abrirVisor('${exp.fileId}', '${exp.titulo.replace(/'/g, "\\'")}')"><i class="fas fa-eye"></i> Ver PDF</button>
+                                <a class="btn btn-secundario" href="https://drive.google.com/file/d/${exp.fileId}/view?usp=drive_link" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Drive</a>
+                            </div>
+                        </div>
+                    </article>
+                `).join('');
+
+                // Reactivar animaciones reveal
+                setTimeout(activarReveal, 60);
+            }
+
+            // Visor PDF
+            window.abrirVisor = function(fileId, titulo) {
+                document.getElementById('modalTitulo').innerHTML = `<i class="fas fa-file-pdf"></i> ${titulo}`;
+                document.getElementById('modalBody').innerHTML = `<iframe src="https://drive.google.com/file/d/${fileId}/preview" allow="autoplay"></iframe>`;
+                document.getElementById('modalVisor').classList.add('abierto');
+                document.body.style.overflow = 'hidden';
+            };
+
+            document.getElementById('cerrarModal').addEventListener('click', () => {
+                document.getElementById('modalVisor').classList.remove('abierto');
+                document.body.style.overflow = '';
+                document.getElementById('modalBody').innerHTML = '';
+            });
+            document.getElementById('modalVisor').addEventListener('click', function(e) {
+                if (e.target === this) document.getElementById('cerrarModal').click();
+            });
+            document.addEventListener('keydown', e => {
+                if (e.key === 'Escape') document.getElementById('cerrarModal').click();
+            });
+
+            // Filtros
+            document.querySelectorAll('.btn-filtro').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.btn-filtro').forEach(b => b.classList.remove('activo'));
+                    this.classList.add('activo');
+                    filtroActual = this.dataset.filtro;
+                    renderizar(filtroActual);
+                });
+            });
+
+            // Scroll reveal
+            function activarReveal() {
+                const elementos = document.querySelectorAll('.reveal:not(.visible)');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+                elementos.forEach(el => observer.observe(el));
+            }
+
+            renderizar('todas');
+            activarReveal();
+            window.addEventListener('scroll', activarReveal, { passive: true });
+        })();
+    </script>
+</body>
+</html>
